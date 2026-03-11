@@ -59,7 +59,7 @@ npm start
 
 ## Abi
 
-Kasutasin arenduse käigus Claude AI abi — Spring Boot ja React põhitõdede õppimisel ning vigade lahendamisel.
+Kasutasin arenduse käigus Claude AI abi — Spring Boot ja React põhitõdede rakendamisel ning vigade lahendamisel.
 
 ## Lahendamata probleemid
 
