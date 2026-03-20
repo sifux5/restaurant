@@ -1,7 +1,11 @@
 # Restaurant Reservation System
 
+A web application for browsing, filtering, and reserving restaurant tables.
+
 **Author:** Alex Kupper
 **Development time:** 15-20 hours
+
+---
 
 ## Requirements
 
@@ -10,7 +14,7 @@ Before running the application, install the following:
 1. **Java 21** — download from [oracle.com/java](https://www.oracle.com/java/technologies/downloads/#java21)
 2. **Node.js** (v18 or newer) — download from [nodejs.org](https://nodejs.org/)
 
-Verify in terminal:
+To verify the installation, open Terminal (Mac/Linux) or Command Prompt (Windows) and run:
 ```bash
 java -version   # should show 21.x.x
 node -version   # should show v18 or newer
@@ -21,25 +25,36 @@ node -version   # should show v18 or newer
 ## Running the application
 
 ### Mac / Linux
+
 1. Open Terminal
-2. Navigate to the project folder:
+2. Type the following and press Enter:
 ```bash
 cd restaurant
-```
-
-3. Make the script executable and run:
-```bash
 chmod +x start.sh
 ./start.sh
 ```
 
+> `chmod +x start.sh` makes the script executable — you only need to do this once.
+
 ### Windows
+
 1. Open the project folder in File Explorer
 2. Double-click **`start.bat`**
 
 ✅ The browser will open automatically at `http://localhost:3000`
 
 > **Note:** The first startup may take 1-2 minutes as dependencies are downloaded. The script will automatically stop any existing processes running on ports 8080 and 3000.
+
+---
+
+## How to use
+
+1. **Set your filters** on the left panel — choose a date, time, number of guests and zone
+2. **Click "Recommend a table"** — the system will highlight the best available table in gold
+3. **Click on a table** to make a reservation
+4. **Enter your name** in the popup and click "Reserve"
+
+If your group is too large for a single table, the system will suggest two adjacent tables to merge.
 
 ---
 
