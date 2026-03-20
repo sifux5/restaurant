@@ -1,66 +1,75 @@
-# Restorani Reserveerimissüsteem
+# Restaurant Reservation System
 
-**Autor:** Alex Kupper  
-**Arendusaeg:** 15-20 tundi
+**Author:** Alex Kupper  
+**Development time:** 15-20 hours
 
-## Eeldused enne käivitamist
+## Requirements
 
-- [Java 21](https://www.oracle.com/java/technologies/downloads/#java21) peab olema installitud
-- [Node.js](https://nodejs.org/) (v18 või uuem) peab olema installitud
-- Kontrolli terminalis:
+Before running the application, install the following:
+
+1. **Java 21** — download from [oracle.com/java](https://www.oracle.com/java/technologies/downloads/#java21)
+2. **Node.js** (v18 or newer) — download from [nodejs.org](https://nodejs.org/)
+
+Verify in terminal:
 ```bash
-  java -version   # peaks näitama 21.x.x
-  node -version   # peaks näitama v18 või uuem
+java -version   # should show 21.x.x
+node -version   # should show v18 or newer
 ```
 
-## Käivitamine (2 sammu)
+---
 
-### Samm 1 — Käivita backend
-Ava terminal ja käivita:
+## Running the application
+
+### Mac / Linux
+1. Open Terminal
+2. Navigate to the project folder:
 ```bash
 cd restaurant
-./mvnw spring-boot:run
 ```
-✅ Backend on valmis kui näed: `Started RestaurantApplication in X seconds`
-
-### Samm 2 — Käivita frontend
-Ava **uus** terminal ja käivita:
+3. Make the script executable and run:
 ```bash
-cd restaurant/frontend
-npm install
-npm start
+chmod +x start.sh
+./start.sh
 ```
-✅ Brauser avab automaatselt `http://localhost:3000`
+
+### Windows
+1. Open the project folder in File Explorer
+2. Double-click **`start.bat`**
+
+✅ The browser will open automatically at `http://localhost:3000`
+
+> **Note:** The first startup may take 1-2 minutes as dependencies are downloaded.
 
 ---
 
-## Funktsionaalsus
+## Features
 
-- Saaliplaani visuaal kolme tsooniga: Sisesaal, Terrass, Privaatruum
-- Laudade filtreerimine kuupäeva, kellaaja, inimeste arvu ja tsooni järgi
-- Eelistused: vaikne nurk, akna all, laste mängunurga lähedal
-- Soovitusalgoritm mis arvestab vaba ruumi ja eelistuste sobivust
-- Parim soovitus tõstetakse kuldse äärena esile
-- Broneeringu loomine modali kaudu koos juhusliku päevaroaga (TheMealDB API)
-- Dünaamiline laudade liitmine — kui seltskond on suurem kui ükski laud mahutab, soovitab süsteem kõrvuti asuvaid laudu
-- Juhuslikud broneeringud genereeritakse käivitumisel
-
----
-
-## Keerulisemad kohad
-
-**Java versioon:** Algselt kasutasin Java 25, millega Lombok ei töötanud. Peale CGI kinnitust et Java 21 on sobiv, vahetasin versiooni ja probleem lahenes.
-
-**Lombok annotation processor:** `@Data` annotatsioon ei genereerinud gettereid/settereid Maven kompileerimisel. Lahendasin lisades `pom.xml`-i eraldi `maven-compiler-plugin` konfiguratsiooni koos Lombok annotation processor path'iga.
-
-**CORS:** Frontend (port 3000) ei saanud backendiga (port 8080) suhelda. Lahendasin lisades `application.properties`-se rea `spring.mvc.cors.allowed-origins=http://localhost:3000`.
+- Floor plan with three zones: Indoor, Terrace, Private room
+- Filter tables by date, time, number of guests and zone
+- Preferences: quiet corner, window seat, near playground
+- Recommendation algorithm based on available space and preferences
+- Best recommendation highlighted with a gold border
+- Table reservation via modal with a random daily dish (TheMealDB API)
+- Dynamic table merging — if the group is too large for one table, the system suggests combining adjacent tables
+- Occupied tables show when they will become available
+- Random reservations generated on startup
 
 ---
 
-## Abi
+## Challenges
 
-Kasutasin arenduse käigus Claude AI abi — Spring Boot ja React põhitõdede rakendamisel ning vigade lahendamisel.
+**Java version:** Initially used Java 25 where Lombok did not work. After confirming with CGI that Java 21 is acceptable, switching versions resolved the issue.
 
-## Lahendamata probleemid
+**Lombok annotation processor:** The `@Data` annotation did not generate getters/setters during Maven compilation. Fixed by adding explicit `maven-compiler-plugin` configuration with Lombok annotation processor path in `pom.xml`.
 
-Kõik planeeritud funktsionaalsused said teostatud.
+**CORS:** Frontend (port 3000) could not communicate with backend (port 8080). Fixed by adding `spring.mvc.cors.allowed-origins=http://localhost:3000` to `application.properties`.
+
+---
+
+## Help
+
+Claude AI was used during development — for applying Spring Boot and React concepts and resolving errors.
+
+## Unresolved issues
+
+All planned features were successfully implemented.
