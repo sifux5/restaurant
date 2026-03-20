@@ -3,23 +3,23 @@ import React from 'react';
 function FilterPanel({ filters, setFilters, onRecommend }) {
   return (
     <div className="filter-panel">
-      <h2>Otsi lauda</h2>
+      <h2>Find a table</h2>
 
-      <label>Kuupäev</label>
+      <label>Date</label>
       <input
         type="date"
         value={filters.date}
         onChange={e => setFilters({ ...filters, date: e.target.value })}
       />
 
-      <label>Kellaaeg</label>
+      <label>Time</label>
       <input
         type="time"
         value={filters.time}
         onChange={e => setFilters({ ...filters, time: e.target.value })}
       />
 
-      <label>Inimeste arv</label>
+      <label>Number of guests</label>
       <input
         type="number"
         min="1"
@@ -28,18 +28,18 @@ function FilterPanel({ filters, setFilters, onRecommend }) {
         onChange={e => setFilters({ ...filters, partySize: parseInt(e.target.value) })}
       />
 
-      <label>Tsoon</label>
+      <label>Zone</label>
       <select
         value={filters.zone}
         onChange={e => setFilters({ ...filters, zone: e.target.value })}
       >
-        <option value="">Kõik tsoonid</option>
-        <option value="INDOOR">Sisesaal</option>
-        <option value="TERRACE">Terrass</option>
-        <option value="PRIVATE">Privaatruum</option>
+        <option value="">All zones</option>
+        <option value="INDOOR">Indoor</option>
+        <option value="TERRACE">Terrace</option>
+        <option value="PRIVATE">Private room</option>
       </select>
 
-      <h3>Eelistused</h3>
+      <h3>Preferences</h3>
 
       <label>
         <input
@@ -47,7 +47,7 @@ function FilterPanel({ filters, setFilters, onRecommend }) {
           checked={filters.quietCorner}
           onChange={e => setFilters({ ...filters, quietCorner: e.target.checked })}
         />
-        Vaikne nurk
+        Quiet corner
       </label>
 
       <label>
@@ -56,7 +56,7 @@ function FilterPanel({ filters, setFilters, onRecommend }) {
           checked={filters.windowSeat}
           onChange={e => setFilters({ ...filters, windowSeat: e.target.checked })}
         />
-        Akna all
+        Window seat
       </label>
 
       <label>
@@ -65,10 +65,10 @@ function FilterPanel({ filters, setFilters, onRecommend }) {
           checked={filters.nearPlayground}
           onChange={e => setFilters({ ...filters, nearPlayground: e.target.checked })}
         />
-        Laste mängunurga lähedal
+        Near playground
       </label>
 
-      <button onClick={onRecommend}>Soovita lauda</button>
+      <button onClick={onRecommend}>Recommend a table</button>
     </div>
   );
 }

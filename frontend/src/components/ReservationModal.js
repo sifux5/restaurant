@@ -14,23 +14,23 @@ function ReservationModal({ table, onConfirm, onClose }) {
   return (
     <div className="modal-overlay">
       <div className="modal">
-        <h2>Broneeri laud {table.name}</h2>
-        <p>Mahtuvus: {table.capacity} inimest</p>
-        <p>Tsoon: {table.zone}</p>
+        <h2>Reserve table {table.name}</h2>
+        <p>Capacity: {table.capacity} guests</p>
+        <p>Zone: {table.zone}</p>
 
         {meal && (
           <div className="meal-suggestion">
-            <h3>🍽️ Tänane soovitus</h3>
+            <h3>🍽️ Today's suggestion</h3>
             <img src={meal.strMealThumb} alt={meal.strMeal} />
             <p><strong>{meal.strMeal}</strong></p>
             <p className="meal-category">{meal.strCategory} • {meal.strArea}</p>
           </div>
         )}
 
-        <label>Sinu nimi</label>
+        <label>Your name</label>
         <input
           type="text"
-          placeholder="Sisesta nimi..."
+          placeholder="Enter your name..."
           value={customerName}
           onChange={e => setCustomerName(e.target.value)}
         />
@@ -40,9 +40,9 @@ function ReservationModal({ table, onConfirm, onClose }) {
             onClick={() => customerName && onConfirm(customerName)}
             disabled={!customerName}
           >
-            Broneeri
+            Reserve
           </button>
-          <button onClick={onClose}>Tühista</button>
+          <button onClick={onClose}>Cancel</button>
         </div>
       </div>
     </div>

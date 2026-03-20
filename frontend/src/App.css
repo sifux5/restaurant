@@ -149,6 +149,11 @@ h1 {
   box-shadow: 0 0 10px rgba(255, 193, 7, 0.6);
 }
 
+.table.mergeable {
+  border: 2px solid #9b59b6;
+  background-color: #f5eef8;
+}
+
 .table-name {
   font-weight: bold;
   font-size: 1.1rem;
@@ -164,6 +169,12 @@ h1 {
   margin-top: 4px;
 }
 
+.available-from {
+  font-size: 0.7rem;
+  color: #e74c3c;
+  margin-top: 4px;
+}
+
 .badge {
   position: absolute;
   top: -10px;
@@ -174,6 +185,19 @@ h1 {
   padding: 2px 5px;
   border-radius: 10px;
   font-weight: bold;
+}
+
+.merge-badge {
+  background-color: #9b59b6;
+}
+
+.merge-suggestion {
+  background-color: #f5eef8;
+  border: 1px solid #9b59b6;
+  border-radius: 8px;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+  color: #6c3483;
 }
 
 /* Legend */
@@ -208,6 +232,12 @@ h1 {
 .legend-item.best-recommendation {
   background: #fff9c4;
   border: 2px solid #FFC107;
+}
+
+.legend-item.mergeable {
+  border: 2px solid #9b59b6;
+  background-color: #f5eef8;
+  color: #6c3483;
 }
 
 /* Modal */

@@ -57,7 +57,7 @@ function App() {
       });
       setRecommendedIds(res.data.map(t => t.id));
 
-      // Kui soovitusi ei leitud, otsi kõrvuti laudu
+      // If no recommendations found, search for mergeable tables
       if (res.data.length === 0) {
         const mergeRes = await axios.get(`${API}/tables/merge`, {
           params: { partySize: filters.partySize, startTime, endTime }
@@ -67,7 +67,7 @@ function App() {
         setMergeableTables([]);
       }
     } catch (err) {
-      alert('Viga soovituste laadimisel!');
+      alert('Error loading recommendations!');
     }
   };
 
@@ -82,20 +82,20 @@ function App() {
           startTime,
         }
       });
-      alert('Broneering loodud!');
+      alert('Reservation created!');
       setSelectedTable(null);
       setRecommendedIds([]);
       setMergeableTables([]);
       fetchTables();
       fetchReservations();
     } catch (err) {
-      alert(err.response?.data || 'Viga broneeringu loomisel!');
+      alert(err.response?.data || 'Error creating reservation!');
     }
   };
 
   return (
     <div className="app">
-      <h1>🍽️ Restorani Reserveerimissüsteem</h1>
+      <h1>🍽️ Restaurant Reservation System</h1>
       <div className="main">
         <FilterPanel
           filters={filters}

@@ -14,6 +14,23 @@ function FloorPlan({ tables, reservations, recommendedIds, mergeableTables, filt
     });
   };
 
+  const getAvailableFrom = (tableId) => {
+    const startTime = new Date(`${filters.date}T${filters.time}:00`);
+    const endTime = new Date(startTime.getTime() + 2 * 60 * 60 * 1000);
+
+    const occupyingReservation = reservations.find(r => {
+      if (r.table.id !== tableId) return false;
+      const resStart = new Date(r.startTime);
+      const resEnd = new Date(r.endTime);
+      return resStart < endTime && resEnd > startTime;
+    });
+
+    if (!occupyingReservation) return null;
+
+    const availableTime = new Date(occupyingReservation.endTime);
+    return availableTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  };
+
   const getMergeGroup = (tableId) => {
     return mergeableTables.findIndex(pair => pair.some(t => t.id === tableId));
   };
@@ -27,15 +44,15 @@ function FloorPlan({ tables, reservations, recommendedIds, mergeableTables, filt
   };
 
   const zones = ['INDOOR', 'TERRACE', 'PRIVATE'];
-  const zoneNames = { INDOOR: '🏠 Sisesaal', TERRACE: '🌿 Terrass', PRIVATE: '🔒 Privaatruum' };
+  const zoneNames = { INDOOR: '🏠 Indoor', TERRACE: '🌿 Terrace', PRIVATE: '🔒 Private room' };
 
   return (
     <div className="floor-plan">
-      <h2>Saali plaan</h2>
+      <h2>Floor plan</h2>
 
       {mergeableTables.length > 0 && (
         <div className="merge-suggestion">
-          🔗 Seltskond on suur — soovitame liita järgmised lauad:
+          🔗 Large group detected — we suggest merging the following tables:
           {mergeableTables.slice(0, 3).map((pair, i) => (
             <span key={i}> <strong>{pair[0].name} + {pair[1].name}</strong>{i < Math.min(mergeableTables.length, 3) - 1 ? ',' : ''}</span>
           ))}
@@ -57,12 +74,15 @@ function FloorPlan({ tables, reservations, recommendedIds, mergeableTables, filt
                   <div className="table-name">{table.name}</div>
                   <div className="table-capacity">👤 {table.capacity}</div>
                   <div className="table-icons">
-                    {table.windowSeat && <span title="Aknakoht">🪟</span>}
-                    {table.quietCorner && <span title="Vaikne nurk">🤫</span>}
-                    {table.nearPlayground && <span title="Laste mängunurga lähedal">🧒</span>}
+                    {table.windowSeat && <span title="Window seat">🪟</span>}
+                    {table.quietCorner && <span title="Quiet corner">🤫</span>}
+                    {table.nearPlayground && <span title="Near playground">🧒</span>}
                   </div>
+                  {isTableOccupied(table.id) && getAvailableFrom(table.id) && (
+                    <div className="available-from">🕐 Free at {getAvailableFrom(table.id)}</div>
+                  )}
                   {recommendedIds[0] === table.id && (
-                    <div className="badge">⭐ Parim</div>
+                    <div className="badge">⭐ Best</div>
                   )}
                   {getMergeGroup(table.id) >= 0 && (
                     <div className="badge merge-badge">🔗 {getMergeGroup(table.id) + 1}</div>
@@ -73,11 +93,11 @@ function FloorPlan({ tables, reservations, recommendedIds, mergeableTables, filt
         </div>
       ))}
       <div className="legend">
-        <span className="legend-item available">Vaba</span>
-        <span className="legend-item occupied">Hõivatud</span>
-        <span className="legend-item recommended">Soovitatud</span>
-        <span className="legend-item best-recommendation">Parim soovitus</span>
-        <span className="legend-item mergeable">Liitmiseks</span>
+        <span className="legend-item available">Available</span>
+        <span className="legend-item occupied">Occupied</span>
+        <span className="legend-item recommended">Recommended</span>
+        <span className="legend-item best-recommendation">Best match</span>
+        <span className="legend-item mergeable">Mergeable</span>
       </div>
     </div>
   );
