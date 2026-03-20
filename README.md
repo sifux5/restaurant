@@ -15,10 +15,9 @@ Before running the application, install the following:
 2. **Node.js** (v18 or newer) — download from [nodejs.org](https://nodejs.org/)
 
 To verify the installation, open Terminal (Mac/Linux) or Command Prompt (Windows) and run:
-```bash
-java -version   # should show 21.x.x
-node -version   # should show v18 or newer
-```
+
+    java -version   # should show 21.x.x
+    node -version   # should show v18 or newer
 
 ---
 
@@ -28,11 +27,10 @@ node -version   # should show v18 or newer
 
 1. Open Terminal
 2. Type the following and press Enter:
-```bash
-cd restaurant
-chmod +x start.sh
-./start.sh
-```
+
+    cd restaurant
+    chmod +x start.sh
+    ./start.sh
 
 > `chmod +x start.sh` makes the script executable — you only need to do this once.
 
@@ -82,9 +80,22 @@ If your group is too large for a single table, the system will suggest two adjac
 
 ---
 
-## Help
+## AI Usage
 
-Claude AI was used during development — for applying Spring Boot and React concepts and resolving errors.
+Claude AI was used extensively during development. The following parts were generated with AI assistance:
+
+- Backend service classes (RecommendationService, TableMergeService)
+- Frontend components (FloorPlan, FilterPanel, ReservationModal)
+- Spring Boot configuration and setup
+- Bug fixing (CORS, Lombok, Java version issues)
+
+My own contributions:
+- Overall application design and feature decisions
+- Choosing filtering criteria and preference options
+- Testing and verifying all functionality
+- Writing this documentation
+
+---
 
 ## Unresolved issues
 
