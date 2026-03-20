@@ -13,6 +13,7 @@ public class RecommendationService {
 
     private final TableService tableService;
 
+    // AI-assisted: scoring algorithm structure and stream sorting logic generated with Claude AI
     public List<Table> recommendTables(
             int partySize,
             LocalDateTime startTime,
@@ -31,6 +32,7 @@ public class RecommendationService {
                 .toList();
     }
 
+    // Scoring logic: rewards exact fit, penalizes empty seats, adds points for matching preferences
     private int calculateScore(Table table, int partySize, boolean windowSeat, boolean quietCorner, boolean accessible, boolean nearPlayground) {
         int score = 0;
 

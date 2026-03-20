@@ -1,7 +1,9 @@
 import React from 'react';
 
+// AI-assisted: floor plan component structure and table status logic generated with Claude AI
 function FloorPlan({ tables, reservations, recommendedIds, mergeableTables, filters, onTableClick }) {
 
+  // Checks if a table is occupied at the selected date/time (2 hour visit duration)
   const isTableOccupied = (tableId) => {
     const startTime = new Date(`${filters.date}T${filters.time}:00`);
     const endTime = new Date(startTime.getTime() + 2 * 60 * 60 * 1000);
@@ -14,6 +16,7 @@ function FloorPlan({ tables, reservations, recommendedIds, mergeableTables, filt
     });
   };
 
+  // Returns the time when the table becomes available again
   const getAvailableFrom = (tableId) => {
     const startTime = new Date(`${filters.date}T${filters.time}:00`);
     const endTime = new Date(startTime.getTime() + 2 * 60 * 60 * 1000);
